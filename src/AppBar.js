@@ -1,7 +1,7 @@
 import "./App.css";
 import { Button, Icon, Input } from "semantic-ui-react";
 
-function Head() {
+function AppBar() {
   return (
     <header>
       <div className="top-header">
@@ -25,4 +25,4 @@ function Head() {
   );
 }
 
-export default Head;
+export default AppBar;

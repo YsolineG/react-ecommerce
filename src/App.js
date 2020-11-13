@@ -1,10 +1,10 @@
 import "./App.css";
-import Head from "./Head.js";
+import AppBar from "./AppBar.js";
 
 function App() {
   return (
     <div className="App">
-      <Head />
+      <AppBar />
     </div>
   );
 }
