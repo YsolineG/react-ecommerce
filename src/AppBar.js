@@ -1,5 +1,20 @@
 import "./App.css";
-import { Button, Icon, Input } from "semantic-ui-react";
+import { Button, Icon, Input, Menu } from "semantic-ui-react";
+
+const menuItems = [
+  {
+    name: "PC",
+  },
+  {
+    name: "Nintendo Switch",
+  },
+  {
+    name: "Xbox",
+  },
+  {
+    name: "Playstation",
+  },
+];
 
 function AppBar() {
   return (
@@ -15,12 +30,11 @@ function AppBar() {
         <Button icon="user" content="Compte" />
         <Button icon="shopping basket" content="Panier" />
       </div>
-      <nav className="menu">
-        <a href="">PC</a>
-        <a href="">Nintendo Switch</a>
-        <a href="">Xbox</a>
-        <a href="">Playstation</a>
-      </nav>
+      <Menu secondary>
+        {menuItems.map((item) => (
+          <Menu.Item name={item.name} />
+        ))}
+      </Menu>
     </header>
   );
 }
