@@ -1,6 +1,5 @@
 .menu {
   display: flex;
-  /*flex-wrap: wrap;*/
   flex-direction: column;
 }
 
@@ -19,7 +18,7 @@ header {
 header .input-search {
   width: 100%;
   flex-grow: 1;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
 }
 
 .top-header {
@@ -29,6 +28,21 @@ header .input-search {
 }
 
 .top-header .ui.button:not(:last-child) {
-  margin-right: 2em;
-  /*margin-left: auto;*/
+  margin-right: 2rem;
+}
+
+@media screen and (min-width: 640px) {
+  .menu {
+    flex-direction: row;
+  }
+
+  .top-header {
+    flex-wrap: nowrap;
+  }
+
+  header .input-search {
+    margin-bottom: 0;
+    width: auto;
+    margin-right: 2rem;
+  }
 }
