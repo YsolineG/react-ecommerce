@@ -4,7 +4,7 @@ import { Button, Divider } from "semantic-ui-react";
 
 function ProductRow(props) {
   return (
-    <main>
+    <div>
       <div className="product-row">
         <img className="product-image" src={props.image} />
         <div className="product-content">
@@ -17,7 +17,7 @@ function ProductRow(props) {
       <div>
         <Divider />
       </div>
-    </main>
+    </div>
   );
 }
 

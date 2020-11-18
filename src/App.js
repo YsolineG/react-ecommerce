@@ -1,6 +1,9 @@
+import React from "react";
 import "./App.css";
 import AppBar from "./AppBar.js";
+import DropDown from "./DropDown.js";
 import ProductsList from "./ProductsList.js";
+import ProductsGrid from "./ProductsGrid.js";
 
 const games = [
   {
@@ -25,7 +28,9 @@ function App() {
   return (
     <div className="App">
       <AppBar />
-      <ProductsList games={games} />
+      <DropDown />
+      {/* <ProductsList games={games} /> */}
+      <ProductsGrid games={games} />
     </div>
   );
 }

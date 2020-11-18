@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { Button, Input, Menu, Divider } from "semantic-ui-react";
 
