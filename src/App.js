@@ -4,6 +4,7 @@ import AppBar from "./AppBar.js";
 import DropDown from "./DropDown.js";
 import ProductsList from "./ProductsList.js";
 import ProductsGrid from "./ProductsGrid.js";
+import Paging from "./Paging.js";
 
 const games = [
   {
@@ -31,6 +32,7 @@ function App() {
       <DropDown />
       {/* <ProductsList games={games} /> */}
       <ProductsGrid games={games} />
+      <Paging />
     </div>
   );
 }
