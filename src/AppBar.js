@@ -1,17 +1,21 @@
 import "./App.css";
-import { Button, Icon, Input, Menu } from "semantic-ui-react";
+import { Button, Input, Menu, Divider } from "semantic-ui-react";
 
 const menuItems = [
   {
+    key: 1,
     name: "PC",
   },
   {
+    key: 2,
     name: "Nintendo Switch",
   },
   {
+    key: 3,
     name: "Xbox",
   },
   {
+    key: 4,
     name: "Playstation",
   },
 ];
@@ -32,9 +36,13 @@ function AppBar() {
       </div>
       <Menu secondary>
         {menuItems.map((item) => (
-          <Menu.Item name={item.name} />
+          <Menu.Item
+            name={item.name}
+            onClick={() => console.log("click on " + item.name)}
+          />
         ))}
       </Menu>
+      <Divider />
     </header>
   );
 }

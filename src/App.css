@@ -23,6 +23,30 @@ header .input-search {
   margin-right: 2em;
 }
 
+.product-row {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+}
+
+.product-image {
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.product-price {
+  margin-left: auto;
+  padding-right: 1rem;
+}
+
+.product-description {
+  color: gray;
+}
+
+.product-content {
+  padding: 0.5rem;
+}
+
 @media screen and (min-width: 640px) {
   .top-header {
     flex-wrap: nowrap;
@@ -32,5 +56,18 @@ header .input-search {
     margin-bottom: 0;
     width: auto;
     margin-right: 2rem;
+  }
+
+  .product-image {
+    min-width: 200px;
+    max-width: 200px;
+  }
+
+  .product-price {
+    font-size: 1.5rem;
+  }
+
+  .product-name {
+    font-size: 1.5rem;
   }
 }
