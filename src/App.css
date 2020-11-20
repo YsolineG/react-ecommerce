@@ -19,7 +19,6 @@ header .input-search {
 }
 
 .dropdown {
-  text-align: right;
   margin-right: 2em;
 }
 
@@ -99,6 +98,19 @@ header .input-search {
   padding: 2rem;
 }
 
+.product-summary .product-image {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.shopping-bag .my-shopping-bag {
+  border: 0.1rem solid grey;
+}
+
+.total-summary {
+  border: 0.1rem solid grey;
+}
+
 @media screen and (min-width: 640px) {
   .top-header {
     flex-wrap: nowrap;
@@ -125,5 +137,10 @@ header .input-search {
 
   .products-grid {
     justify-content: start;
+  }
+
+  .product-summary .product-image {
+    max-width: 200px;
+    min-width: 200px;
   }
 }

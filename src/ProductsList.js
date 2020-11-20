@@ -11,6 +11,7 @@ function ProductsList({ games }) {
             description={game.description}
             price={game.price}
             image={game.image}
+            key={game.id}
           />
         );
       })}

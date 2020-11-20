@@ -12,6 +12,7 @@ function ProductsGrid({ games }) {
               description={game.description}
               price={game.price}
               image={game.image}
+              key={game.id}
             />
           );
         })}

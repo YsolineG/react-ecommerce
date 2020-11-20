@@ -2,26 +2,45 @@ import React from "react";
 import "./App.css";
 import { Button, Input, Menu, Divider } from "semantic-ui-react";
 
-const menuItems = [
+const categories = [
   {
-    key: 1,
+    id: 1,
     name: "PC",
+    slug: "pc",
   },
   {
-    key: 2,
+    id: 2,
     name: "Nintendo Switch",
+    slug: "nintendo-switch",
   },
   {
-    key: 3,
+    id: 3,
     name: "Xbox",
+    slug: "xbox",
   },
   {
-    key: 4,
+    id: 4,
     name: "Playstation",
+    slug: "playstation",
   },
 ];
 
-function AppBar() {
+function AppBar(props) {
+  const { onMenuChanged } = props;
+
+  const [selected, setSelected] = React.useState(categories[0]);
+
+  const handleMenuClick = React.useCallback(
+    (category) => {
+      setSelected(category);
+
+      if (onMenuChanged) {
+        onMenuChanged(category);
+      }
+    },
+    [onMenuChanged]
+  );
+
   return (
     <header>
       <div className="top-header">
@@ -36,10 +55,12 @@ function AppBar() {
         <Button icon="shopping basket" content="Panier" />
       </div>
       <Menu secondary>
-        {menuItems.map((item) => (
+        {categories.map((category) => (
           <Menu.Item
-            name={item.name}
-            onClick={() => console.log("click on " + item.name)}
+            name={category.name}
+            onClick={() => handleMenuClick(category)}
+            active={selected.id === category.id}
+            key={category.id}
           />
         ))}
       </Menu>

@@ -1,6 +1,6 @@
 import React from "react";
-import "./App.css";
 import { Button, Divider } from "semantic-ui-react";
+import "./App.css";
 
 function ProductRow(props) {
   return (
