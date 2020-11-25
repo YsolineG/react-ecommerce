@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import AppBar from "./AppBar.js";
 import AppView from "./AppView.js";
 import { BrowserRouter } from "react-router-dom";
+import ShoppingBag from "./ShoppingBag.js";
+// import { Switch, Route, useHistory } from "react-router";
 
 const gamesList = [
   {
@@ -33,10 +35,15 @@ const gamesList = [
 ];
 
 function App() {
+  // const history = useHistory();
+
+  // const handleShoppingBagChange = React.useCallback(() => {
+  //   history.push("/panier");
+  // }, [history]);
+
   const [games, setGames] = useState(gamesList);
 
   const handleMenuChanged = React.useCallback((category) => {
-    console.log(category);
     const gamesFiltered = gamesList.filter(
       (game) => game.category.id === category.id
     );
@@ -45,10 +52,17 @@ function App() {
 
   return (
     <div className="App">
-      <AppBar onMenuChanged={handleMenuChanged} />
-
+      <AppBar
+        onMenuChanged={handleMenuChanged}
+        // onShoppingBagChange={handleShoppingBagChange}
+      />
       <BrowserRouter>
         <AppView games={games} />
+        {/* <Route
+          path="/mon-panier"
+          render={() => <ShoppingBag games={games} />}
+        /> */}
+        <ShoppingBag games={games} />
       </BrowserRouter>
     </div>
   );

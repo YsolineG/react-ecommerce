@@ -4,11 +4,15 @@ import "./App.css";
 
 function ProductSummary(props) {
   return (
-    <div className="product-summary">
-      <img className="product-image" src={props.image} />
-      <div className="product-name">{props.name}</div>
-      <Button size="mini" icon="trash" content="Supprimer" />
-      <div className="product-price">{props.price}</div>
+    <div>
+      <div className="product-summary">
+        <img className="product-image" src={props.image} />
+        <div>
+          <div className="product-name">{props.name}</div>
+          <Button size="mini" icon="trash" content="Supprimer" />
+        </div>
+        <div className="product-price">{props.price}</div>
+      </div>
       <Divider />
     </div>
   );

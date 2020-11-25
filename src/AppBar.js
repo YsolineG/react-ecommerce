@@ -26,6 +26,8 @@ const categories = [
 ];
 
 function AppBar(props) {
+  // const { onShoppingBagChange } = props;
+
   const { onMenuChanged } = props;
 
   const [selected, setSelected] = React.useState(categories[0]);
@@ -52,7 +54,11 @@ function AppBar(props) {
           placeholder="Rechercher"
         />
         <Button icon="user" content="Compte" />
-        <Button icon="shopping basket" content="Panier" />
+        <Button
+          icon="shopping basket"
+          content="Panier"
+          // onClick={onShoppingBagChange}
+        />
       </div>
       <Menu secondary>
         {categories.map((category) => (

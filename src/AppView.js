@@ -4,7 +4,6 @@ import ProductsGrid from "./ProductsGrid.js";
 import DropDown from "./DropDown.js";
 import { Switch, Route, useHistory } from "react-router";
 import Paging from "./Paging.js";
-import ShoppingBag from "./ShoppingBag.js";
 
 function AppView(props) {
   const { games } = props;
@@ -26,7 +25,6 @@ function AppView(props) {
         <Route path="/grille" render={() => <ProductsGrid games={games} />} />
       </Switch>
       <Paging />
-      <ShoppingBag games={games} />
     </div>
   );
 }
