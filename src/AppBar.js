@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Button, Input, Menu, Divider } from "semantic-ui-react";
-import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const categories = [
   {
@@ -27,12 +27,6 @@ const categories = [
 ];
 
 function AppBar(props) {
-  const history = useHistory();
-
-  const handleShoppingBagClick = React.useCallback(() => {
-    history.push("/panier");
-  });
-
   const { onMenuChanged } = props;
 
   const [selected, setSelected] = React.useState(categories[0]);
@@ -60,9 +54,10 @@ function AppBar(props) {
         />
         <Button icon="user" content="Compte" />
         <Button
+          as={Link}
+          to="/panier"
           icon="shopping basket"
           content="Panier"
-          onClick={handleShoppingBagClick}
         />
       </div>
       <Menu secondary>

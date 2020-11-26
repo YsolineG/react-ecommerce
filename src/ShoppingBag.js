@@ -2,19 +2,19 @@ import React from "react";
 import ProductSummary from "./ProductSummary.js";
 import TotalSummary from "./TotalSummary.js";
 
-function ShoppingBag({ games }) {
+function ShoppingBag({ products }) {
   return (
     <div className="shopping-bag">
       <div>
         <h2>Mon panier</h2>
         <div className="my-shopping-bag">
-          {games.map((game) => {
+          {products.map((product) => {
             return (
               <ProductSummary
-                image={game.image}
-                name={game.name}
-                price={game.price}
-                key={game.id}
+                image={product.image}
+                name={product.name}
+                price={product.price}
+                key={product.id}
               />
             );
           })}
