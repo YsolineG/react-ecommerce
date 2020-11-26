@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard.js";
 
-function ProductsGrid({ games }) {
+function ProductsGrid({ games, addProductToBasket }) {
   return (
     <main>
       <div className="products-grid">
@@ -13,6 +13,7 @@ function ProductsGrid({ games }) {
               price={game.price}
               image={game.image}
               key={game.id}
+              addProductToBasket={addProductToBasket}
             />
           );
         })}

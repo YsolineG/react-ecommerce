@@ -6,7 +6,7 @@ import { Switch, Route, useHistory } from "react-router";
 import Paging from "./Paging.js";
 
 function AppView(props) {
-  const { games } = props;
+  const { games, addProductToBasket } = props;
 
   const history = useHistory();
 
@@ -21,8 +21,24 @@ function AppView(props) {
     <div className="content">
       <DropDown onViewChanged={handleViewChanged} />
       <Switch>
-        <Route path="/liste" render={() => <ProductsList games={games} />} />
-        <Route path="/grille" render={() => <ProductsGrid games={games} />} />
+        <Route
+          path="/liste"
+          render={() => (
+            <ProductsList
+              games={games}
+              addProductToBasket={addProductToBasket}
+            />
+          )}
+        />
+        <Route
+          path="/grille"
+          render={() => (
+            <ProductsGrid
+              games={games}
+              addProductToBasket={addProductToBasket}
+            />
+          )}
+        />
       </Switch>
       <Paging />
     </div>

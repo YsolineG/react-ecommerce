@@ -5,36 +5,36 @@ import { BrowserRouter } from "react-router-dom";
 import ShoppingBag from "./ShoppingBag.js";
 import { Switch, Route } from "react-router";
 
-const gamesList = [
-  {
-    id: 1,
-    image:
-      "https://www.actugaming.net/wp-content/uploads/2020/08/fall-guys3.jpg",
-    name: "Fall Guys",
-    description: "Fall Guys: Ultimate Knockout, soit le dernier survivant.",
-    price: "20€",
-    category: {
-      id: 1,
-      name: "PC",
-      slug: "pc",
-    },
-  },
-  {
-    id: 2,
-    image:
-      "http://ubistatic19-a.akamaihd.net/ubicomstatic/fr-fr/global/search-thumbnail/ubicom-jd2021-page-meta-artwork_mobile_363097.jpg",
-    name: "Just Dance 2021",
-    description: "Jeu de danse par excellence avec 40 nouveaux tubes",
-    price: "60€",
-    category: {
-      id: 2,
-      name: "Switch",
-      slug: "nintendo-switch",
-    },
-  },
-];
+// const gamesList = [
+//   {
+//     id: 1,
+//     image:
+//       "https://www.actugaming.net/wp-content/uploads/2020/08/fall-guys3.jpg",
+//     name: "Fall Guys",
+//     description: "Fall Guys: Ultimate Knockout, soit le dernier survivant.",
+//     price: "20€",
+//     category: {
+//       id: 1,
+//       name: "PC",
+//       slug: "pc",
+//     },
+//   },
+//   {
+//     id: 2,
+//     image:
+//       "http://ubistatic19-a.akamaihd.net/ubicomstatic/fr-fr/global/search-thumbnail/ubicom-jd2021-page-meta-artwork_mobile_363097.jpg",
+//     name: "Just Dance 2021",
+//     description: "Jeu de danse par excellence avec 40 nouveaux tubes",
+//     price: "60€",
+//     category: {
+//       id: 2,
+//       name: "Switch",
+//       slug: "nintendo-switch",
+//     },
+//   },
+// ];
 
-const products = [
+const productsList = [
   {
     id: 1,
     image:
@@ -63,6 +63,15 @@ function App() {
     setGames(gamesFiltered);
   }, []);
 
+  const [products, setProducts] = useState(productsList);
+
+  function addProductToBasket(product) {
+    setProducts((products) => {
+      products.push(product);
+      return products;
+    });
+  }
+
   return (
     <BrowserRouter>
       <AppBar onMenuChanged={handleMenuChanged} />
@@ -71,7 +80,7 @@ function App() {
           <ShoppingBag products={products} />
         </Route>
         <Route path="/">
-          <AppView games={games} />
+          <AppView games={games} addProductToBasket={addProductToBasket} />
         </Route>
       </Switch>
     </BrowserRouter>
