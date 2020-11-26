@@ -42,11 +42,6 @@ const products = [
     name: "Fall Guys",
     description: "Fall Guys: Ultimate Knockout, soit le dernier survivant.",
     price: "20€",
-    // category: {
-    //   id: 1,
-    //   name: "PC",
-    //   slug: "pc",
-    // },
   },
   {
     id: 2,
@@ -55,11 +50,6 @@ const products = [
     name: "Just Dance 2021",
     description: "Jeu de danse par excellence avec 40 nouveaux tubes",
     price: "60€",
-    // category: {
-    //   id: 2,
-    //   name: "Switch",
-    //   slug: "nintendo-switch",
-    // },
   },
 ];
 
