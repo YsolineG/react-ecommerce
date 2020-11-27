@@ -17,6 +17,7 @@ function ProductRow(props) {
         <Button
           onClick={() =>
             addProductToBasket({
+              id: props.id,
               name: props.name,
               description: props.description,
               price: props.price,

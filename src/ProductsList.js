@@ -7,6 +7,7 @@ function ProductsList({ games, addProductToBasket }) {
       {games.map((game) => {
         return (
           <ProductRow
+            id={game.id}
             name={game.name}
             description={game.description}
             price={game.price}
