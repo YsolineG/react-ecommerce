@@ -18,7 +18,7 @@ function ProductSummary(props) {
             onClick={() => deleteProductFromBasket(id)}
           />
         </div>
-        <div className="product-price">{props.price}</div>
+        <div className="product-price">{props.price} €</div>
       </div>
       <Divider />
     </div>

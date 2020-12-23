@@ -3,7 +3,7 @@ import ProductRow from "./ProductRow.js";
 
 function ProductsList({ games, addProductToBasket }) {
   return (
-    <main>
+    <div>
       {games.map((game) => {
         return (
           <ProductRow
@@ -17,7 +17,7 @@ function ProductsList({ games, addProductToBasket }) {
           />
         );
       })}
-    </main>
+    </div>
   );
 }
 

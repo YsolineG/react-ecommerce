@@ -1,32 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "./AppBar.js";
 import AppView from "./AppView.js";
 import { BrowserRouter } from "react-router-dom";
 import ShoppingBag from "./ShoppingBag.js";
 import { Switch, Route } from "react-router";
-import data from "./GameList.json";
+import axios from "axios";
+import UserAccount from "./UserAccount.js";
 
 function App() {
-  const [games, setGames] = useState(data.gamesList);
+  // Produits
+  const [data, setData] = useState({ products: [] });
+  // Tableau des produits dans le panier
+  const [basket, setBasket] = useState([]);
 
-  const handleMenuChanged = React.useCallback((category) => {
-    const gamesFiltered = data.gamesList.filter(
-      (game) => game.category.id === category.id
-    );
-    setGames(gamesFiltered);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios("http://localhost:8000/api/v1/products");
+      setData({ products: response.data.data });
+    }
+    fetchData();
   }, []);
 
-  const [products, setProducts] = useState([]);
+  const handleMenuChanged = React.useCallback(async (category) => {
+    const response = await axios.get("http://localhost:8000/api/v1/products", {
+      params: {
+        category_id: category.id,
+      },
+    });
+    setData({ products: response.data.data });
+  }, []);
 
   function addProductToBasket(product) {
-    setProducts((products) => {
-      products.push(product);
-      return products;
+    setBasket((basket) => {
+      basket.push(product);
+      return basket;
     });
   }
 
   function deleteProductFromBasket(productId) {
-    setProducts(products.filter((product) => product.id !== productId));
+    setBasket(basket.filter((product) => product.id !== productId));
   }
 
   return (
@@ -35,12 +47,18 @@ function App() {
       <Switch>
         <Route path="/panier">
           <ShoppingBag
-            products={products}
+            basket={basket}
             deleteProductFromBasket={deleteProductFromBasket}
           />
         </Route>
+        <Route path="/compte">
+          <UserAccount basket={basket} toto="azepoai" tata={5} />
+        </Route>
         <Route path="/">
-          <AppView games={games} addProductToBasket={addProductToBasket} />
+          <AppView
+            games={data.products}
+            addProductToBasket={addProductToBasket}
+          />
         </Route>
       </Switch>
     </BrowserRouter>

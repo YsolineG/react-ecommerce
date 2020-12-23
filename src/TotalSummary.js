@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Divider } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 function TotalSummary(props) {
   const { totalProductPrice, deliveryPrice } = props;
@@ -21,7 +22,9 @@ function TotalSummary(props) {
         <div>{totalProductPrice + deliveryPrice} €</div>
       </div>
 
-      <Button>Valider mon panier</Button>
+      <Button as={Link} to="/compte" disabled={totalProductPrice === 0}>
+        Valider mon panier
+      </Button>
     </div>
   );
 }

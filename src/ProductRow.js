@@ -13,7 +13,7 @@ function ProductRow(props) {
           <div className="product-name">{props.name}</div>
           <div className="product-description">{props.description}</div>
         </div>
-        <div className="product-price">{props.price}</div>
+        <div className="product-price">{props.price} €</div>
         <Button
           onClick={() =>
             addProductToBasket({

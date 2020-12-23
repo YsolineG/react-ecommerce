@@ -11,7 +11,7 @@ function ProductCard(props) {
         <img className="product-image" src={props.image} />
         <div className="product-name">{props.name}</div>
         <div className="product-description">{props.description}</div>
-        <div className="product-price">{props.price}</div>
+        <div className="product-price">{props.price} €</div>
         <Button
           onClick={() =>
             addProductToBasket({

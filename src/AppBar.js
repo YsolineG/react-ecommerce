@@ -1,35 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Button, Input, Menu, Divider } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-
-const categories = [
-  {
-    id: 1,
-    name: "PC",
-    slug: "pc",
-  },
-  {
-    id: 2,
-    name: "Nintendo Switch",
-    slug: "nintendo-switch",
-  },
-  {
-    id: 3,
-    name: "Xbox",
-    slug: "xbox",
-  },
-  {
-    id: 4,
-    name: "Playstation",
-    slug: "playstation",
-  },
-];
+import axios from "axios";
 
 function AppBar(props) {
+  const [data, setData] = useState({ categories: [] });
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios("http://localhost:8000/api/v1/categories");
+      setData({ categories: response.data });
+    }
+    fetchData();
+  }, []);
+
   const { onMenuChanged } = props;
 
-  const [selected, setSelected] = React.useState(categories[0]);
+  const [selected, setSelected] = React.useState(data.categories);
 
   const handleMenuClick = React.useCallback(
     (category) => {
@@ -52,7 +40,7 @@ function AppBar(props) {
           iconPosition="left"
           placeholder="Rechercher"
         />
-        <Button icon="user" content="Compte" />
+        <Button as={Link} to="/compte" icon="user" content="Compte" />
         <Button
           as={Link}
           to="/panier"
@@ -61,7 +49,7 @@ function AppBar(props) {
         />
       </div>
       <Menu secondary>
-        {categories.map((category) => (
+        {data.categories.map((category) => (
           <Menu.Item
             name={category.name}
             onClick={() => handleMenuClick(category)}
