@@ -1,27 +1,23 @@
 import React from "react";
 import ProductSummary from "./ProductSummary.js";
 import TotalSummary from "./TotalSummary.js";
+import { connect } from "react-redux";
 
-function ShoppingBag({ basket, deleteProductFromBasket }) {
-  const totalProductPrice = basket.reduce(
-    (accumulator, product) => accumulator + product.price,
-    0
-  );
-
+function ShoppingBag(props) {
   return (
     <div className="shopping-bag">
       <div>
         <h2>Mon panier</h2>
         <div className="my-shopping-bag">
-          {basket.map((product) => {
+          {props.products.map((product) => {
             return (
               <ProductSummary
+                key={product.id}
                 id={product.id}
                 image={product.image}
                 name={product.name}
                 price={product.price}
-                key={product.id}
-                deleteProductFromBasket={deleteProductFromBasket}
+                quantity={product.quantity}
               />
             );
           })}
@@ -29,10 +25,18 @@ function ShoppingBag({ basket, deleteProductFromBasket }) {
       </div>
       <div className="summary">
         <h2>Récapitulatif</h2>
-        <TotalSummary totalProductPrice={totalProductPrice} deliveryPrice={5} />
+        <TotalSummary totalProductPrice={props.total} deliveryPrice={5} />
       </div>
     </div>
   );
 }
 
-export default ShoppingBag;
+function mapStateToProps(state) {
+  console.log("state=", state);
+  return {
+    products: state.products,
+    total: state.total,
+  };
+}
+
+export default connect(mapStateToProps)(ShoppingBag);

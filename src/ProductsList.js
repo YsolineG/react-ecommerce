@@ -1,7 +1,7 @@
 import React from "react";
 import ProductRow from "./ProductRow.js";
 
-function ProductsList({ games, addProductToBasket }) {
+function ProductsList({ games }) {
   return (
     <div>
       {games.map((game) => {
@@ -13,7 +13,6 @@ function ProductsList({ games, addProductToBasket }) {
             price={game.price}
             image={game.image}
             key={game.id}
-            addProductToBasket={addProductToBasket}
           />
         );
       })}

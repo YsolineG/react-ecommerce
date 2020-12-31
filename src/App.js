@@ -10,9 +10,8 @@ import UserAccount from "./UserAccount.js";
 function App() {
   // Produits
   const [data, setData] = useState({ products: [] });
-  // Tableau des produits dans le panier
-  const [basket, setBasket] = useState([]);
 
+  //Appel API Produits
   useEffect(() => {
     async function fetchData() {
       const response = await axios("http://localhost:8000/api/v1/products");
@@ -30,35 +29,18 @@ function App() {
     setData({ products: response.data.data });
   }, []);
 
-  function addProductToBasket(product) {
-    setBasket((basket) => {
-      basket.push(product);
-      return basket;
-    });
-  }
-
-  function deleteProductFromBasket(productId) {
-    setBasket(basket.filter((product) => product.id !== productId));
-  }
-
   return (
     <BrowserRouter>
       <AppBar onMenuChanged={handleMenuChanged} />
       <Switch>
         <Route path="/panier">
-          <ShoppingBag
-            basket={basket}
-            deleteProductFromBasket={deleteProductFromBasket}
-          />
+          <ShoppingBag />
         </Route>
         <Route path="/compte">
-          <UserAccount basket={basket} toto="azepoai" tata={5} />
+          <UserAccount />
         </Route>
         <Route path="/">
-          <AppView
-            games={data.products}
-            addProductToBasket={addProductToBasket}
-          />
+          <AppView games={data.products} />
         </Route>
       </Switch>
     </BrowserRouter>

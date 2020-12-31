@@ -7,6 +7,7 @@ import axios from "axios";
 function AppBar(props) {
   const [data, setData] = useState({ categories: [] });
 
+  // Appel API catégories
   useEffect(() => {
     async function fetchData() {
       const response = await axios("http://localhost:8000/api/v1/categories");
@@ -55,6 +56,8 @@ function AppBar(props) {
             onClick={() => handleMenuClick(category)}
             active={selected.id === category.id}
             key={category.id}
+            as={Link}
+            to={"/" + category.name}
           />
         ))}
       </Menu>

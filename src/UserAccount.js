@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
+import { connect } from "react-redux";
 
-function UserAccount({ basket }) {
+function UserAccount(props) {
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
 
+  // Appel API  POST  Client
   async function submitForm() {
     const response = await axios.post(
       "http://localhost:8000/api/v1/customers",
@@ -20,6 +22,7 @@ function UserAccount({ basket }) {
       }
     );
 
+    // Appel API POST Commande
     const result = await axios.post("http://localhost:8000/api/v1/orders", {
       customer_id: response.data.id,
     });
@@ -30,13 +33,15 @@ function UserAccount({ basket }) {
     // on appelle l'API avec l'ID de la commande dans l'URL et en paramètres
     // l'ID de la commande (order_id), l'ID du produit (product_id) et la quantité (quantity)
 
-    for (var i = 0; i < basket.length; i++) {
+    // Appel API POST Commande-Produit
+    for (var i = 0; i < props.products.length; i++) {
+      const product = props.products[i];
       await axios.post(
         "http://localhost:8000/api/v1/orders/" + result.data.id + "/products",
         {
           order_id: result.data.id,
-          product_id: basket[i].id,
-          quantity: 1,
+          product_id: product.id,
+          quantity: product.quantity,
         }
       );
     }
@@ -90,4 +95,19 @@ function UserAccount({ basket }) {
   );
 }
 
-export default UserAccount;
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     saveOrder: (product) => dispatch({ type: "SAVE_ORDER", product }),
+//   };
+// };
+
+function mapStateToProps(state) {
+  return {
+    products: state.products,
+    total: state.total,
+  };
+}
+
+export default connect(mapStateToProps)(UserAccount);
+
+// export default connect(null, mapDispatchToProps)(UserAccount);

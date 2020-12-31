@@ -1,10 +1,9 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
 import "./App.css";
+import { connect } from "react-redux";
 
 function ProductCard(props) {
-  const { addProductToBasket } = props;
-
   return (
     <div className="product-card">
       <div className="product-element">
@@ -14,20 +13,27 @@ function ProductCard(props) {
         <div className="product-price">{props.price} €</div>
         <Button
           onClick={() =>
-            addProductToBasket({
+            props.addToBasket({
               id: props.id,
               name: props.name,
               description: props.description,
               price: props.price,
               image: props.image,
+              quantity: 1,
             })
           }
         >
-          Acheter
+          Ajouter au panier
         </Button>
       </div>
     </div>
   );
 }
 
-export default ProductCard;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToBasket: (product) => dispatch({ type: "ADD_TO_BASKET", product }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ProductCard);
